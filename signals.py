@@ -102,6 +102,14 @@ def generate_signals(df):
             is_shooting_star(df.iloc[i])                         # Shooting Star pattern detected
         ):
             signals.append((df.index[i], df["close"].iloc[i], "⚠️ Potential Reversal"))
+        
+        # Buy Signal: Close price touches lower BB, below VWAP, and RSI < RSI MA
+        elif (
+            df["close"].iloc[i] <= df["lower_band"].iloc[i] and  # Close price touches lower BB
+            df["close"].iloc[i] < df["vwap"].iloc[i] and         # Close price below VWAP
+            df["rsi"].iloc[i] < df["rsi_ma"].iloc[i]             # RSI below its moving average
+        ):
+            signals.append((df.index[i], df["close"].iloc[i], "🛒 Buy Signal"))
 
     return signals
 
