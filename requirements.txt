@@ -1,4 +1,5 @@
 pandas
 ta
-binance
-python-telegram-bot
+python-binance
+python-dotenv
+requests
